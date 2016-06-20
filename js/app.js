@@ -13,9 +13,17 @@ function colorshow() {
   var $g = $("#green").val();
   var $b = $("#blue").val();
   $("#newColor").css({"background-color": "rgb(" + $r + "," + $g + "," + $b + ")" });
+  $color = $("#newColor").css("background-color");
 }
 colorshow();
 $("input[type=range]").mouseenter(function() {
     $(this).mousemove(colorshow);
 }
 );
+$("#addNewColor").click(function() {
+  $nl = $("<li></li>");
+  $nl.css({"background-color" : $color })
+  $("ul").append($nl);
+  $(".selected").removeClass("selected");
+  $($nl).addClass("selected");  
+  });
