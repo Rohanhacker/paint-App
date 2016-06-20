@@ -4,7 +4,7 @@ var $canvas = $("canvas");
 var $context = $("canvas")[0].getContext("2d");
 
 // end
-var $color = $(".red").css("background-color");
+var $color;
 $("#revealColorSelect").click(function() {
   $("#colorSelect").toggle();
 });
@@ -35,7 +35,7 @@ $("#addNewColor").click(function() {
   });
 
 // canvas drawing stuff
-
+ $color = $(".red").css("background-color");
 $("canvas").mousedown(
   function(e) {
     laste = e;
@@ -49,8 +49,11 @@ $("canvas").mousedown(
       $context.lineTo(e.offsetX,e.offsetY);
       $context.strokeStyle = $color;
       $context.stroke();
+      laste = e;
     }
   }
 ).mouseup(function() {
   md = false;
+}).mouseleave(function() {
+  $canvas.mouseup();
 });
